@@ -30,6 +30,7 @@
 		5778D4CB24F6D5F600E225E0 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		5778D4CD24F6D88200E225E0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5778D4D024F6E51700E225E0 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		57CF33EE24F8491600BA6AD9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +49,7 @@
 			children = (
 				5778D4B224F6D28800E225E0 /* Ballers */,
 				5778D4B124F6D28800E225E0 /* Products */,
+				57CF33ED24F8491600BA6AD9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +100,14 @@
 				5778D4D024F6E51700E225E0 /* PlayerViewController.swift */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		57CF33ED24F8491600BA6AD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57CF33EE24F8491600BA6AD9 /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
