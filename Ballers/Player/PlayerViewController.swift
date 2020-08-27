@@ -28,7 +28,7 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
         imageLable.layer.cornerRadius = 20
         guard let baller = baller else {return}
-        title = baller.name
+        title = "\(baller.name) #\(baller.number)"
         numberLable.text = baller.number
         clubLable.text = baller.club
         birthdate.text = baller.birthDay

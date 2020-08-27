@@ -48,10 +48,8 @@ class CollectionViewController: UIViewController {
             return player.name.lowercased().contains(searchText.lowercased()) ||          player.club.lowercased().contains(searchText.lowercased()) ||
                 player.workingLeg.lowercased().contains(searchText.lowercased())
         }
-        
         tableView.reloadData()
     }
-    
 }
 
 
@@ -66,8 +64,6 @@ extension CollectionViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifire", for: indexPath)
-        //        let player = array[indexPath.row]
-        
         let searchingPlayer: Player
         if isFiltering {
             searchingPlayer = filteredPlayer[indexPath.row]

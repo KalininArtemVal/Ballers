@@ -38,6 +38,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         clubNameText.delegate = self
         numberOfPlayer.delegate = self
         workingFood.addTarget(self, action: #selector(selected), for: .valueChanged)
+        photoOfBaller.layer.cornerRadius = 20
     }
     
     // MARK: - Устанавливаем дату рождения
@@ -53,15 +54,12 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         birthDayText.inputView = dataPicker
     }
     
-    //Устанавливаем Сегмент контролле (Рабочая нога)
-    @objc func selected(target: UISegmentedControl) {
-        if target == self.workingFood {
-            let segmentIndex = target.selectedSegmentIndex
-            leg = self.workingLeg[segmentIndex]
-        }
-    }
-    
     @objc func donePressed() {
+//        let date = Date()
+//        let calendar = Calendar.current
+//        let components = calendar.dateComponents([.year, .month, .day], from: date)
+//        let year = components.year
+        
         let forrmater = DateFormatter()
         forrmater.dateStyle = .medium
         forrmater.timeStyle = .none
@@ -73,10 +71,14 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         addButtonOutlet.layer.cornerRadius = 12
     }
     
-    
-    
+    //Устанавливаем Сегмент контролле (Рабочая нога)
+    @objc func selected(target: UISegmentedControl) {
+        if target == self.workingFood {
+            let segmentIndex = target.selectedSegmentIndex
+            leg = self.workingLeg[segmentIndex]
+        }
+    }
 
-    
 
     // MARK: - Кнопка добавить
     @IBAction func addButtonAction(_ sender: Any) {
