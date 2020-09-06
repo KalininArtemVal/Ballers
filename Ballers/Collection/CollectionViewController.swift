@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CollectionViewController: UIViewController {
     
@@ -23,6 +24,7 @@ class CollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
@@ -35,7 +37,7 @@ class CollectionViewController: UIViewController {
         // 2
         searchController.obscuresBackgroundDuringPresentation = false
         // 3
-        searchController.searchBar.placeholder = "Поиск игрока"
+        searchController.searchBar.placeholder = "Введите имя, клуб или рабочую ногу"
         // 4
         navigationItem.searchController = searchController
         // 5
@@ -45,7 +47,7 @@ class CollectionViewController: UIViewController {
     func filterContentForSearchText(_ searchText: String,
                                     category: Player? = nil) {
         filteredPlayer = array.filter { (player: Player) -> Bool in
-            return player.name.lowercased().contains(searchText.lowercased()) ||          player.club.lowercased().contains(searchText.lowercased()) ||
+            return player.name.lowercased().contains(searchText.lowercased()) ||              player.club.lowercased().contains(searchText.lowercased()) ||
                 player.workingLeg.lowercased().contains(searchText.lowercased())
         }
         tableView.reloadData()

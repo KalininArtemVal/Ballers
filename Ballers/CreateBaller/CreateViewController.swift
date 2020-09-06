@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -32,6 +33,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        saveData()
         birthday()
         setButton()
         nameText.delegate = self
@@ -41,6 +43,40 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         photoOfBaller.layer.cornerRadius = 20
     }
     
+    // MARK: - Core Date
+//    func saveData() {
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let context = appDelegate.persistentContainer.viewContext
+//        
+//        guard let entity = NSEntityDescription.entity(forEntityName: "Player", in: context) else { return }
+//        
+//        let player = NSManagedObject(entity: entity, insertInto: context)
+//        player.setValue(nameText, forKey: "name")
+//        
+//        do {
+//            try context.save()
+//        } catch let error as NSError {
+//            print("could not save")
+//        }
+//        
+//        fetchData()
+//    }
+//    
+//    
+//    func fetchData() {
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+//         let context = appDelegate.persistentContainer.viewContext
+//         let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Player")
+//
+//        do {
+//            let result = try context.fetch(fetchData)
+//            for data in result as! [NSManagedObject]{
+//                 print(data.value(forKeyPath: "name") as Any)
+//            }
+//        }catch {
+//            print("ERRoR")
+//        }
+//    }
     // MARK: - Устанавливаем дату рождения
     func birthday() {
         let toolBar = UIToolbar()
@@ -97,6 +133,8 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
+        
+        //ПРОБУЕМ
     }
     
     @IBAction func AddPhoto(_ sender: Any) {
