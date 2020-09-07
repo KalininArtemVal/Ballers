@@ -11,6 +11,8 @@ import CoreData
 
 class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    
+    
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var clubNameText: UITextField!
     @IBOutlet weak var numberOfPlayer: UITextField!
@@ -25,12 +27,18 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     @IBOutlet weak var contractDate: UITextField!
     
+    @IBOutlet weak var prioritySegment: UISegmentedControl!
+
     
     let dataPicker = UIDatePicker()
     let workingLeg = ["Левая", "Обе", "Правая"]
     var leg = "Обе"
+    
     var playerPhoto: UIImage?
     
+    var colorOfPriority = UIColor.green
+    
+    let arrayOfPriority = [UIColor.green, UIColor.orange, UIColor.red]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +49,17 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         nameText.delegate = self
         clubNameText.delegate = self
         numberOfPlayer.delegate = self
+        playerWeight.delegate = self
+        playerHeight.delegate = self
         workingFood.addTarget(self, action: #selector(selected), for: .valueChanged)
+        prioritySegment.addTarget(self, action: #selector(selectPriority), for: .valueChanged)
         photoOfBaller.layer.cornerRadius = 20
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Core Date
@@ -79,6 +96,13 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
 //            print("ERRoR")
 //        }
 //    }
+    // MARK: - Устанавливаем приоритет
+    @objc func selectPriority(target: UISegmentedControl) {
+        if target == self.prioritySegment {
+            let segmentIndex = target.selectedSegmentIndex
+            colorOfPriority = self.arrayOfPriority[segmentIndex]
+        }
+    }
     // MARK: - Устанавливаем дату рождения
     func birthday() {
         let toolBar = UIToolbar()
@@ -139,7 +163,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     // MARK: - Кнопка добавить
     @IBAction func addButtonAction(_ sender: Any) {
         guard let photo = playerPhoto else {return}
-        let newPlayer = Player(name: nameText.text ?? "", club: clubNameText.text ?? "", number: numberOfPlayer.text ?? "", birthDay: birthDayText.text ?? "", weight: playerWeight.text ?? "", height: playerHeight.text ?? "", workingLeg: leg, photo: photo, contract: contractDate.text ?? "")
+        let newPlayer = Player(name: nameText.text ?? "", club: clubNameText.text ?? "", number: numberOfPlayer.text ?? "", birthDay: birthDayText.text ?? "", weight: playerWeight.text ?? "", height: playerHeight.text ?? "", workingLeg: leg, photo: photo, contract: contractDate.text ?? "", priority: colorOfPriority)
         
         array.append(newPlayer)
         nameText.text = ""
@@ -189,18 +213,21 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         case numberOfPlayer:
             numberOfPlayer.resignFirstResponder()
             return true;
-            case playerWeight:
+        case playerWeight:
             playerWeight.resignFirstResponder()
             return true;
-            case playerHeight:
+        case playerHeight:
             playerHeight.resignFirstResponder()
             return true;
-            case workingFood:
+        case workingFood:
             workingFood.resignFirstResponder()
             return true;
-            case birthDayText:
+        case birthDayText:
             birthDayText.resignFirstResponder()
             return true;
+        case contractDate:
+            contractDate.resignFirstResponder()
+            return true
         default:
             print("no")
         }

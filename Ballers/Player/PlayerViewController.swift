@@ -20,8 +20,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var playerHeight: UILabel!
     @IBOutlet weak var workingLeg: UILabel!
     @IBOutlet weak var contractFor: UILabel!
-    
     @IBOutlet weak var ageLable: UILabel!
+    @IBOutlet weak var priorityColor: UIView!
     
     
     var baller: Player?
@@ -39,7 +39,16 @@ class PlayerViewController: UIViewController {
         workingLeg.text = baller.workingLeg
         imageLable.image = baller.photo
         contractFor.text = baller.contract
+        setPriority()
+        priorityColor.backgroundColor = baller.priority
         ageLable.text = "(\(age(birthday: baller.birthDay)))"
+    }
+    
+    
+    
+    
+    func setPriority() {
+        priorityColor.layer.cornerRadius = priorityColor.layer.bounds.size.width / 2
     }
     
     func age(birthday: String) -> String {
