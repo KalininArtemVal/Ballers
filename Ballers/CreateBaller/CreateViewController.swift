@@ -23,6 +23,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     @IBOutlet weak var photoOfBaller: UIImageView!
     
+    @IBOutlet weak var contractDate: UITextField!
     
     
     let dataPicker = UIDatePicker()
@@ -34,6 +35,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     override func viewDidLoad() {
         super.viewDidLoad()
 //        saveData()
+        cotract()
         birthday()
         setButton()
         nameText.delegate = self
@@ -90,14 +92,11 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         birthDayText.inputView = dataPicker
     }
     
+    
+    
     @objc func donePressed() {
-//        let date = Date()
-//        let calendar = Calendar.current
-//        let components = calendar.dateComponents([.year, .month, .day], from: date)
-//        let year = components.year
-        
         let forrmater = DateFormatter()
-        forrmater.dateStyle = .medium
+        forrmater.dateStyle = .short
         forrmater.timeStyle = .none
         birthDayText.text = forrmater.string(from: dataPicker.date)
         self.view.endEditing(true)
@@ -114,12 +113,33 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             leg = self.workingLeg[segmentIndex]
         }
     }
+    
+    // MARK: - Дата контракта
+    func cotract() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressedForContract))
+        toolBar.setItems([doneBtn], animated: true)
+        contractDate.inputAccessoryView = toolBar
+        dataPicker.datePickerMode = .date
+        dataPicker.datePickerStyle == .compact
+        contractDate.inputView = dataPicker
+    }
+    
+    @objc func donePressedForContract() {
+        let forrmater = DateFormatter()
+        forrmater.dateStyle = .short
+        forrmater.timeStyle = .none
+        contractDate.text = forrmater.string(from: dataPicker.date)
+        self.view.endEditing(true)
+    }
 
 
     // MARK: - Кнопка добавить
     @IBAction func addButtonAction(_ sender: Any) {
         guard let photo = playerPhoto else {return}
-        let newPlayer = Player(name: nameText.text ?? "", club: clubNameText.text ?? "", number: numberOfPlayer.text ?? "", birthDay: birthDayText.text ?? "", weight: playerWeight.text ?? "", height: playerHeight.text ?? "", workingLeg: leg, photo: photo)
+        let newPlayer = Player(name: nameText.text ?? "", club: clubNameText.text ?? "", number: numberOfPlayer.text ?? "", birthDay: birthDayText.text ?? "", weight: playerWeight.text ?? "", height: playerHeight.text ?? "", workingLeg: leg, photo: photo, contract: contractDate.text ?? "")
         
         array.append(newPlayer)
         nameText.text = ""
@@ -128,6 +148,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         birthDayText.text = ""
         playerWeight.text = ""
         playerHeight.text = ""
+        contractDate.text = ""
         
         let alert = UIAlertController(title: "Игрок добавлен в базу", message: "Игрока можно найти в общей базе", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)

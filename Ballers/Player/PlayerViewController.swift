@@ -21,6 +21,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var workingLeg: UILabel!
     @IBOutlet weak var contractFor: UILabel!
     
+    @IBOutlet weak var ageLable: UILabel!
+    
     
     var baller: Player?
     
@@ -36,6 +38,25 @@ class PlayerViewController: UIViewController {
         playerHeight.text = baller.height
         workingLeg.text = baller.workingLeg
         imageLable.image = baller.photo
-//        contractFor.text = 
+        contractFor.text = baller.contract
+        ageLable.text = "(\(age(birthday: baller.birthDay)))"
+    }
+    
+    func age(birthday: String) -> String {
+        let dateFormatter : DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.mm.yyyy"
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            return formatter
+        }()
+        
+        let birthday = dateFormatter.date(from: birthday)
+        let timeInterval = birthday?.timeIntervalSinceNow
+        let age = abs(Int(timeInterval! / 31556926.0))
+        return String(age)
     }
 }
+
+
+
+

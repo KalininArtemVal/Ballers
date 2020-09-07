@@ -163,6 +163,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(0)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxn-5F-je1">
+                                <rect key="frame" x="296" y="303" width="29" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rxn-5F-je1" secondAttribute="height" multiplier="29:24" id="B3y-w4-5oq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -178,10 +187,12 @@
                             <constraint firstItem="l3w-pp-ca9" firstAttribute="top" secondItem="q3U-R9-pTe" secondAttribute="bottom" constant="20" id="JTA-YD-LUz"/>
                             <constraint firstItem="owY-AQ-SVd" firstAttribute="leading" secondItem="RVP-Jq-klh" secondAttribute="trailing" constant="20" id="Kpi-Vp-R5t"/>
                             <constraint firstItem="RVP-Jq-klh" firstAttribute="leading" secondItem="rxI-Pc-9mW" secondAttribute="leading" constant="13" id="KyP-i7-ue1"/>
+                            <constraint firstItem="rxn-5F-je1" firstAttribute="leading" secondItem="JSo-EV-RJP" secondAttribute="trailing" constant="17" id="OV2-bJ-QKO"/>
                             <constraint firstItem="sFg-TK-llA" firstAttribute="leading" secondItem="RVP-Jq-klh" secondAttribute="trailing" constant="20" id="PW0-UV-2Ik"/>
                             <constraint firstItem="cfe-hl-j7H" firstAttribute="top" secondItem="sFg-TK-llA" secondAttribute="bottom" constant="20" id="QXZ-nI-LL8"/>
                             <constraint firstItem="WOc-ca-ZIJ" firstAttribute="centerX" secondItem="X4b-yx-yXZ" secondAttribute="centerX" id="RDb-xx-U54"/>
                             <constraint firstItem="q3U-R9-pTe" firstAttribute="top" secondItem="cfe-hl-j7H" secondAttribute="bottom" constant="8" id="WWq-Ll-qbi"/>
+                            <constraint firstItem="rxn-5F-je1" firstAttribute="centerY" secondItem="JSo-EV-RJP" secondAttribute="centerY" id="Yb6-xO-jhB"/>
                             <constraint firstItem="RVP-Jq-klh" firstAttribute="top" secondItem="rxI-Pc-9mW" secondAttribute="top" id="cMi-2F-yJq"/>
                             <constraint firstItem="X4b-yx-yXZ" firstAttribute="top" secondItem="JSo-EV-RJP" secondAttribute="bottom" constant="20" id="ci0-aF-cro"/>
                             <constraint firstItem="WOc-ca-ZIJ" firstAttribute="top" secondItem="X4b-yx-yXZ" secondAttribute="bottom" constant="8" id="fGi-s2-bNa"/>
@@ -205,6 +216,7 @@
                         <barButtonItem key="backBarButtonItem" title="К списку" id="TIu-Cn-mCL"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageLable" destination="rxn-5F-je1" id="s4s-ZT-260"/>
                         <outlet property="birthdate" destination="JSo-EV-RJP" id="bHv-GA-bb0"/>
                         <outlet property="clubLable" destination="q3U-R9-pTe" id="LBo-vf-PIx"/>
                         <outlet property="contractFor" destination="CPn-MA-mL6" id="axm-Fr-0Jt"/>
@@ -299,7 +311,7 @@
                                     <constraint firstAttribute="width" secondItem="w50-xI-cz8" secondAttribute="height" multiplier="138:17" id="A7V-oD-hXH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите дату" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMe-y9-N7n">
                                 <rect key="frame" x="212" y="332" width="182" height="34"/>
@@ -467,6 +479,7 @@
                         <outlet property="addButtonOutlet" destination="N3r-s5-q2L" id="IWK-Pa-XMO"/>
                         <outlet property="birthDayText" destination="dMe-y9-N7n" id="EVa-Oy-54o"/>
                         <outlet property="clubNameText" destination="fpa-Rk-uRl" id="XVM-eN-0h6"/>
+                        <outlet property="contractDate" destination="uhD-i7-qp9" id="aQj-Qb-eCo"/>
                         <outlet property="nameText" destination="PWz-zP-BTc" id="vxN-bN-twU"/>
                         <outlet property="numberOfPlayer" destination="w50-xI-cz8" id="JGO-Wz-qOZ"/>
                         <outlet property="photoOfBaller" destination="dHU-R2-u0z" id="wmd-Sq-0vT"/>
