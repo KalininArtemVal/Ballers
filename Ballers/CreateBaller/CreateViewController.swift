@@ -17,32 +17,27 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var clubNameText: UITextField!
     @IBOutlet weak var numberOfPlayer: UITextField!
     @IBOutlet weak var addButtonOutlet: UIButton!
-    //новые
     @IBOutlet weak var playerWeight: UITextField!
     @IBOutlet weak var playerHeight: UITextField!
     @IBOutlet weak var workingFood: UISegmentedControl!
     @IBOutlet weak var birthDayText: UITextField!
-    
     @IBOutlet weak var photoOfBaller: UIImageView!
-    
     @IBOutlet weak var contractDate: UITextField!
-    
     @IBOutlet weak var prioritySegment: UISegmentedControl!
-
     
+    //датапикер для Дня рождения
     let dataPicker = UIDatePicker()
+    //Массив значений для Сегмента "Рабочая нога"
     let workingLeg = ["Левая", "Обе", "Правая"]
     var leg = "Обе"
-    
+    //для сегмента "Приоритет"
     var playerPhoto: UIImage?
-    
     var colorOfPriority = UIColor.green
-    
     let arrayOfPriority = [UIColor.green, UIColor.orange, UIColor.red]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        saveData()
+        //        saveData()
         cotract()
         birthday()
         setButton()
@@ -56,46 +51,40 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         photoOfBaller.layer.cornerRadius = 20
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - Core Date
-//    func saveData() {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let context = appDelegate.persistentContainer.viewContext
-//        
-//        guard let entity = NSEntityDescription.entity(forEntityName: "Player", in: context) else { return }
-//        
-//        let player = NSManagedObject(entity: entity, insertInto: context)
-//        player.setValue(nameText, forKey: "name")
-//        
-//        do {
-//            try context.save()
-//        } catch let error as NSError {
-//            print("could not save")
-//        }
-//        
-//        fetchData()
-//    }
-//    
-//    
-//    func fetchData() {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-//         let context = appDelegate.persistentContainer.viewContext
-//         let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Player")
-//
-//        do {
-//            let result = try context.fetch(fetchData)
-//            for data in result as! [NSManagedObject]{
-//                 print(data.value(forKeyPath: "name") as Any)
-//            }
-//        }catch {
-//            print("ERRoR")
-//        }
-//    }
+    //    func saveData() {
+    //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    //        let context = appDelegate.persistentContainer.viewContext
+    //
+    //        guard let entity = NSEntityDescription.entity(forEntityName: "Player", in: context) else { return }
+    //
+    //        let player = NSManagedObject(entity: entity, insertInto: context)
+    //        player.setValue(nameText, forKey: "name")
+    //
+    //        do {
+    //            try context.save()
+    //        } catch let error as NSError {
+    //            print("could not save")
+    //        }
+    //
+    //        fetchData()
+    //    }
+    //
+    //
+    //    func fetchData() {
+    //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+    //         let context = appDelegate.persistentContainer.viewContext
+    //         let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Player")
+    //
+    //        do {
+    //            let result = try context.fetch(fetchData)
+    //            for data in result as! [NSManagedObject]{
+    //                 print(data.value(forKeyPath: "name") as Any)
+    //            }
+    //        }catch {
+    //            print("ERRoR")
+    //        }
+    //    }
     // MARK: - Устанавливаем приоритет
     @objc func selectPriority(target: UISegmentedControl) {
         if target == self.prioritySegment {
@@ -107,7 +96,6 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     func birthday() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
-        
         let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolBar.setItems([doneBtn], animated: true)
         birthDayText.inputAccessoryView = toolBar
@@ -116,8 +104,6 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         birthDayText.inputView = dataPicker
     }
     
-    
-    
     @objc func donePressed() {
         let forrmater = DateFormatter()
         forrmater.dateStyle = .short
@@ -125,6 +111,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         birthDayText.text = forrmater.string(from: dataPicker.date)
         self.view.endEditing(true)
     }
+    
     //Окружность кнопки
     func setButton() {
         addButtonOutlet.layer.cornerRadius = 12
@@ -158,8 +145,8 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         contractDate.text = forrmater.string(from: dataPicker.date)
         self.view.endEditing(true)
     }
-
-
+    
+    
     // MARK: - Кнопка добавить
     @IBAction func addButtonAction(_ sender: Any) {
         guard let photo = playerPhoto else {return}
@@ -178,8 +165,6 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
-        
-        //ПРОБУЕМ
     }
     
     @IBAction func AddPhoto(_ sender: Any) {

@@ -23,7 +23,7 @@ struct Player {
     var priority: UIColor
 }
 
-
+//пробные экземпляры Игрока
 let player = Player(name: "Бабкин Николай", club: "ЦСК", number: "13", birthDay: "27.10.1998", weight: "70", height: "178", workingLeg: "Правая", photo: UIImage(named: "T0LvuIFejY0")!, contract: "13.02.2025", priority: UIColor.green)
 let player1 = Player(name: "Калинин Артем", club: "Спартак", number: "7", birthDay: "18.02.1990", weight: "78", height: "180", workingLeg: "Правая", photo: UIImage(named: "T0LvuIFejY0")!, contract: "13.02.2025", priority: UIColor.green)
 var array = [player, player1]

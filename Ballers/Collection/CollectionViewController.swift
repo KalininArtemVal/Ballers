@@ -12,7 +12,7 @@ import CoreData
 class CollectionViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    //Поисковик
     let searchController = UISearchController(searchResultsController: nil)
     var filteredPlayer: [Player] = []
     var isSearchBarEmpty: Bool {
@@ -24,7 +24,6 @@ class CollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
@@ -44,6 +43,7 @@ class CollectionViewController: UIViewController {
         definesPresentationContext = true
     }
     
+    // MARK: - Категории поиска
     func filterContentForSearchText(_ searchText: String,
                                     category: Player? = nil) {
         filteredPlayer = array.filter { (player: Player) -> Bool in
@@ -53,7 +53,6 @@ class CollectionViewController: UIViewController {
         tableView.reloadData()
     }
 }
-
 
 
 extension CollectionViewController: UITableViewDelegate, UITableViewDataSource {
@@ -110,18 +109,14 @@ extension CollectionViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
 }
 
 extension CollectionViewController: UISearchResultsUpdating {
-    
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         filterContentForSearchText(searchBar.text!)
     }
-    
-    
 }
