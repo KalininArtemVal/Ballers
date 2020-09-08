@@ -11,8 +11,6 @@ import CoreData
 
 class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    
-    
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var clubNameText: UITextField!
     @IBOutlet weak var numberOfPlayer: UITextField!
@@ -25,6 +23,18 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var contractDate: UITextField!
     @IBOutlet weak var prioritySegment: UISegmentedControl!
     
+    //Выбор позиции
+    @IBOutlet weak var positionKZ: UIButton!
+    @IBOutlet weak var positionGoalKeeper: UIButton!
+    @IBOutlet weak var positionCZ: UIButton!
+    @IBOutlet weak var positionCPZ: UIButton!
+    @IBOutlet weak var positionKPZ: UIButton!
+    @IBOutlet weak var positionCN: UIButton!
+    @IBOutlet weak var positionKN: UIButton!
+    
+    @IBOutlet weak var clearPosition: UIButton!
+    
+    
     //датапикер для Дня рождения
     let dataPicker = UIDatePicker()
     //Массив значений для Сегмента "Рабочая нога"
@@ -35,8 +45,11 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     var colorOfPriority = UIColor.green
     let arrayOfPriority = [UIColor.green, UIColor.orange, UIColor.red]
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setPositionButton()
         //        saveData()
         cotract()
         birthday()
@@ -51,40 +64,16 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         photoOfBaller.layer.cornerRadius = 20
     }
     
-    // MARK: - Core Date
-    //    func saveData() {
-    //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    //        let context = appDelegate.persistentContainer.viewContext
-    //
-    //        guard let entity = NSEntityDescription.entity(forEntityName: "Player", in: context) else { return }
-    //
-    //        let player = NSManagedObject(entity: entity, insertInto: context)
-    //        player.setValue(nameText, forKey: "name")
-    //
-    //        do {
-    //            try context.save()
-    //        } catch let error as NSError {
-    //            print("could not save")
-    //        }
-    //
-    //        fetchData()
-    //    }
-    //
-    //
-    //    func fetchData() {
-    //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-    //         let context = appDelegate.persistentContainer.viewContext
-    //         let fetchData = NSFetchRequest<NSFetchRequestResult>(entityName: "Player")
-    //
-    //        do {
-    //            let result = try context.fetch(fetchData)
-    //            for data in result as! [NSManagedObject]{
-    //                 print(data.value(forKeyPath: "name") as Any)
-    //            }
-    //        }catch {
-    //            print("ERRoR")
-    //        }
-    //    }
+    func setPositionButton() {
+        positionKZ.layer.cornerRadius = 12
+        positionGoalKeeper.layer.cornerRadius = 12
+        positionCZ.layer.cornerRadius = 12
+        positionCPZ.layer.cornerRadius = 12
+        positionKPZ.layer.cornerRadius = 12
+        positionCN.layer.cornerRadius = 12
+        positionKN.layer.cornerRadius = 12
+    }
+    
     // MARK: - Устанавливаем приоритет
     @objc func selectPriority(target: UISegmentedControl) {
         if target == self.prioritySegment {
@@ -150,9 +139,10 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     // MARK: - Кнопка добавить
     @IBAction func addButtonAction(_ sender: Any) {
         guard let photo = playerPhoto else {return}
-        let newPlayer = Player(name: nameText.text ?? "", club: clubNameText.text ?? "", number: numberOfPlayer.text ?? "", birthDay: birthDayText.text ?? "", weight: playerWeight.text ?? "", height: playerHeight.text ?? "", workingLeg: leg, photo: photo, contract: contractDate.text ?? "", priority: colorOfPriority)
+        let newPlayer = Player(name: nameText.text ?? "", club: clubNameText.text ?? "", number: numberOfPlayer.text ?? "", birthDay: birthDayText.text ?? "", weight: playerWeight.text ?? "", height: playerHeight.text ?? "", workingLeg: leg, photo: photo, contract: contractDate.text ?? "", priority: colorOfPriority, position: arrayOfPosition)
         
         array.append(newPlayer)
+        //Очищаем поля заполнения игрока
         nameText.text = ""
         clubNameText.text = ""
         numberOfPlayer.text = ""
@@ -160,6 +150,14 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         playerWeight.text = ""
         playerHeight.text = ""
         contractDate.text = ""
+        photoOfBaller.image = .none
+        positionKZ.backgroundColor = .systemGray5
+        positionGoalKeeper.backgroundColor = .systemGray5
+        positionCZ.backgroundColor = .systemGray5
+        positionCPZ.backgroundColor = .systemGray5
+        positionKPZ.backgroundColor = .systemGray5
+        positionCN.backgroundColor = .systemGray5
+        positionKN.backgroundColor = .systemGray5
         
         let alert = UIAlertController(title: "Игрок добавлен в базу", message: "Игрока можно найти в общей базе", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
@@ -218,6 +216,98 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         }
         return true
     }
+    
+    // MARK: - Кнопки Позиции
+    //Подсчет кол-ва Позиций, а также массив позиций
+    var arrayOfPosition = [String]()
+    
+    func calculate(posittion: String) {
+        if arrayOfPosition.count < 3 {
+            arrayOfPosition.append(posittion)
+        } else {
+            print("Больше нельзя")
+        }
+    }
+    
+    //кнопки Позиций (Действия)
+    @IBAction func actionKZ(_ sender: Any) {
+        if arrayOfPosition.count < 3 {
+            calculate(posittion: "КЗ")
+            UIView.animate(withDuration: 1) {
+                self.positionKZ.backgroundColor = #colorLiteral(red: 1, green: 0.5241836905, blue: 0.5077878833, alpha: 1)
+                print(self.arrayOfPosition)
+            }
+        }
+        
+    }
+    @IBAction func actionGoalKeeper(_ sender: Any) {
+        if arrayOfPosition.count < 3 {
+            calculate(posittion: "Вратарь")
+            UIView.animate(withDuration: 1) {
+                self.positionGoalKeeper.backgroundColor = #colorLiteral(red: 1, green: 0.5241836905, blue: 0.5077878833, alpha: 1)
+                print(self.arrayOfPosition)
+            }
+        }
+    }
+    @IBAction func actionCZ(_ sender: Any) {
+        if arrayOfPosition.count < 3 {
+            calculate(posittion: "ЦЗ")
+            UIView.animate(withDuration: 1) {
+                self.positionCZ.backgroundColor = #colorLiteral(red: 1, green: 0.5241836905, blue: 0.5077878833, alpha: 1)
+                print(self.arrayOfPosition)
+            }
+        }
+    }
+    @IBAction func actionCPZ(_ sender: Any) {
+        if arrayOfPosition.count < 3 {
+            calculate(posittion: "ЦПЗ")
+            UIView.animate(withDuration: 1) {
+                self.positionCPZ.backgroundColor = #colorLiteral(red: 1, green: 0.5241836905, blue: 0.5077878833, alpha: 1)
+                print(self.arrayOfPosition)
+            }
+        }
+    }
+    @IBAction func actionKPZ(_ sender: Any) {
+        if arrayOfPosition.count < 3 {
+            calculate(posittion: "КПЗ")
+            UIView.animate(withDuration: 1) {
+                self.positionKPZ.backgroundColor = #colorLiteral(red: 1, green: 0.5241836905, blue: 0.5077878833, alpha: 1)
+                print(self.arrayOfPosition)
+            }
+        }
+    }
+    @IBAction func actionCN(_ sender: Any) {
+        if arrayOfPosition.count < 3 {
+            calculate(posittion: "ЦН")
+            UIView.animate(withDuration: 1) {
+                self.positionCN.backgroundColor = #colorLiteral(red: 1, green: 0.5241836905, blue: 0.5077878833, alpha: 1)
+                print(self.arrayOfPosition)
+            }
+        }
+    }
+    @IBAction func actionKN(_ sender: Any) {
+        if arrayOfPosition.count < 3 {
+            calculate(posittion: "КН")
+            UIView.animate(withDuration: 1) {
+                self.positionKN.backgroundColor = #colorLiteral(red: 1, green: 0.5241836905, blue: 0.5077878833, alpha: 1)
+                print(self.arrayOfPosition)
+            }
+        } else {
+            arrayOfPosition.removeLast()
+        }
+    }
+    
+    @IBAction func actionClearPosition(_ sender: Any) {
+        arrayOfPosition.removeAll()
+        positionKZ.backgroundColor = .systemGray5
+        positionGoalKeeper.backgroundColor = .systemGray5
+        positionCZ.backgroundColor = .systemGray5
+        positionCPZ.backgroundColor = .systemGray5
+        positionKPZ.backgroundColor = .systemGray5
+        positionCN.backgroundColor = .systemGray5
+        positionKN.backgroundColor = .systemGray5
+    }
+    
     
 }
 

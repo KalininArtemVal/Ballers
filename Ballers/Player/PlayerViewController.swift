@@ -24,8 +24,23 @@ class PlayerViewController: UIViewController {
     
     var baller: Player?
     
+    func showPosition() -> String {
+        guard let baller = baller else {return ""}
+        switch baller.position.count {
+        case 1:
+            return "\(baller.position[0])"
+        case 2:
+            return "\(baller.position[0])\n\(baller.position[1])"
+        case 3:
+            return "\(baller.position[0])\n\(baller.position[1])\n\(baller.position[2])"
+        default:
+            return ""
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setPriority()
         imageLable.layer.cornerRadius = 20
         guard let baller = baller else {return}
         title = "\(baller.name) #\(baller.number)"
@@ -37,9 +52,9 @@ class PlayerViewController: UIViewController {
         workingLeg.text = baller.workingLeg
         imageLable.image = baller.photo
         contractFor.text = baller.contract
-        setPriority()
         priorityColor.backgroundColor = baller.priority
         ageLable.text = "(\(age(birthday: baller.birthDay)))"
+        numberLable.text = showPosition()
     }
     
     func setPriority() {
