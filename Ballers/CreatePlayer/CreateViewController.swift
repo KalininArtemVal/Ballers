@@ -49,11 +49,10 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setPositionButton()
-        //        saveData()
         cotract()
         birthday()
         setButton()
+        setPositionButton()
         nameText.delegate = self
         clubNameText.delegate = self
         numberOfPlayer.delegate = self
@@ -218,9 +217,9 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     }
     
     // MARK: - Кнопки Позиции
-    //Подсчет кол-ва Позиций, а также массив позиций
+    //массив Позиций игрока
     var arrayOfPosition = [String]()
-    
+    //Функция, чтобы позиций было не больше 3-х
     func calculate(posittion: String) {
         if arrayOfPosition.count < 3 {
             arrayOfPosition.append(posittion)
@@ -238,7 +237,6 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
                 print(self.arrayOfPosition)
             }
         }
-        
     }
     @IBAction func actionGoalKeeper(_ sender: Any) {
         if arrayOfPosition.count < 3 {
@@ -307,8 +305,6 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         positionCN.backgroundColor = .systemGray5
         positionKN.backgroundColor = .systemGray5
     }
-    
-    
 }
 
 

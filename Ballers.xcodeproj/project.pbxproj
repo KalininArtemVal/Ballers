@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57124E932508E08E00E9D901 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57124E922508E08E00E9D901 /* PlayerTableViewCell.swift */; };
 		5778D4B424F6D28800E225E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778D4B324F6D28800E225E0 /* AppDelegate.swift */; };
 		5778D4B624F6D28800E225E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778D4B524F6D28800E225E0 /* SceneDelegate.swift */; };
 		5778D4B824F6D28800E225E0 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778D4B724F6D28800E225E0 /* CollectionViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57124E922508E08E00E9D901 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		5778D4B024F6D28800E225E0 /* Ballers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ballers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5778D4B324F6D28800E225E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5778D4B524F6D28800E225E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,9 +68,9 @@
 		5778D4B224F6D28800E225E0 /* Ballers */ = {
 			isa = PBXGroup;
 			children = (
-				5778D4C724F6D4DF00E225E0 /* CreateBaller */,
-				5778D4CA24F6D53300E225E0 /* Collection */,
-				5778D4CF24F6E4F800E225E0 /* Player */,
+				5778D4C724F6D4DF00E225E0 /* CreatePlayer */,
+				5778D4CA24F6D53300E225E0 /* CollectionOfPlayers */,
+				5778D4CF24F6E4F800E225E0 /* ShowPlayer */,
 				5778D4B524F6D28800E225E0 /* SceneDelegate.swift */,
 				5778D4B324F6D28800E225E0 /* AppDelegate.swift */,
 				57FD33D524F96EB5004D3DD1 /* DataModel.xcdatamodeld */,
@@ -80,29 +82,30 @@
 			path = Ballers;
 			sourceTree = "<group>";
 		};
-		5778D4C724F6D4DF00E225E0 /* CreateBaller */ = {
+		5778D4C724F6D4DF00E225E0 /* CreatePlayer */ = {
 			isa = PBXGroup;
 			children = (
 				5778D4CB24F6D5F600E225E0 /* CreateViewController.swift */,
 				5778D4CD24F6D88200E225E0 /* Player.swift */,
 			);
-			path = CreateBaller;
+			path = CreatePlayer;
 			sourceTree = "<group>";
 		};
-		5778D4CA24F6D53300E225E0 /* Collection */ = {
+		5778D4CA24F6D53300E225E0 /* CollectionOfPlayers */ = {
 			isa = PBXGroup;
 			children = (
 				5778D4B724F6D28800E225E0 /* CollectionViewController.swift */,
+				57124E922508E08E00E9D901 /* PlayerTableViewCell.swift */,
 			);
-			path = Collection;
+			path = CollectionOfPlayers;
 			sourceTree = "<group>";
 		};
-		5778D4CF24F6E4F800E225E0 /* Player */ = {
+		5778D4CF24F6E4F800E225E0 /* ShowPlayer */ = {
 			isa = PBXGroup;
 			children = (
 				5778D4D024F6E51700E225E0 /* PlayerViewController.swift */,
 			);
-			path = Player;
+			path = ShowPlayer;
 			sourceTree = "<group>";
 		};
 		57CF33ED24F8491600BA6AD9 /* Frameworks */ = {
@@ -188,6 +191,7 @@
 				5778D4B824F6D28800E225E0 /* CollectionViewController.swift in Sources */,
 				5778D4B424F6D28800E225E0 /* AppDelegate.swift in Sources */,
 				57FD33D724F96EB5004D3DD1 /* DataModel.xcdatamodeld in Sources */,
+				57124E932508E08E00E9D901 /* PlayerTableViewCell.swift in Sources */,
 				5778D4CE24F6D88200E225E0 /* Player.swift in Sources */,
 				5778D4B624F6D28800E225E0 /* SceneDelegate.swift in Sources */,
 				5778D4D124F6E51700E225E0 /* PlayerViewController.swift in Sources */,

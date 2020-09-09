@@ -61,7 +61,8 @@ class PlayerViewController: UIViewController {
         priorityColor.layer.cornerRadius = priorityColor.layer.bounds.size.width / 2
     }
     
-    func age(birthday: String) -> String {
+    //Вычисляем возраст игрока
+    public func age(birthday: String) -> String {
         let dateFormatter : DateFormatter = {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.mm.yyyy"

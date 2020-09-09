@@ -64,17 +64,31 @@ extension CollectionViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifire", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifire", for: indexPath) as? PlayerTableViewCell else {return PlayerTableViewCell()}
         let searchingPlayer: Player
         if isFiltering {
             searchingPlayer = filteredPlayer[indexPath.row]
         } else {
             searchingPlayer = array[indexPath.row]
         }
-        
-        cell.textLabel?.text = searchingPlayer.name
+        cell.priorityView.backgroundColor = searchingPlayer.priority
+        cell.nameLable.text = "\(searchingPlayer.name) (\(age(birthday: searchingPlayer.birthDay)))"
         cell.detailTextLabel?.text = searchingPlayer.name
         return cell
+    }
+    
+    public func age(birthday: String) -> String {
+        let dateFormatter : DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.mm.yyyy"
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            return formatter
+        }()
+        
+        let birthday = dateFormatter.date(from: birthday)
+        let timeInterval = birthday?.timeIntervalSinceNow
+        let age = abs(Int(timeInterval! / 31556926.0))
+        return String(age)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
